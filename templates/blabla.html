@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <style>
+        .navbar {
+            overflow: hidden;
+            background-color: #333;
+        }
+
+            .navbar a {
+                float: left;
+                display: block;
+                color: #f2f2f2;
+                text-align: center;
+                padding: 14px 20px;
+                text-decoration: none;
+                font-size: 17px;
+            }
+
+        .dropdown {
+            /*float: right;*/
+            float: left;
+            overflow: hidden;
+        }
+
+            .dropdown .dropbtn {
+                font-size: 17px;
+                border: none;
+                outline: none;
+                color: white;
+                padding: 14px 20px;
+                background-color: inherit;
+                font-family: inherit;
+                margin: 0;
+            }
+
+            .navbar a:hover, .dropdown:hover .dropbtn {
+                background-color: #ddd;
+                color: black;
+            }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            .dropdown-content a {
+                float: none;
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                text-align: left;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: #ddd;
+                }
+
+        .show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <!--
+        <a href="#home">Home</a>
+        <a href="#news">News</a>
+        <a href="#contact">Contact</a>
+        -->
+        <!-- First Dropdown Menu -->
+        <div class="dropdown">
+            <button onclick="toggleDropdown(1)" class="dropbtn">Add</button>
+            <div id="ADD" class="dropdown-content">
+                <a href="#">Word</a>
+                <a href="#">Category</a>
+                <!--<a href="#">3</a> -->
+            </div>
+        </div>
+
+        <!-- Second Dropdown Menu -->
+        <div class="dropdown">
+            <button onclick="toggleDropdown(2)" class="dropbtn">Delete</button>
+            <div id="DELETE" class="dropdown-content">
+                <a href="#">Word</a>
+                <a href="#">Category</a>
+            </div>
+        </div>
+
+        <!-- CHANGE -->
+        <div class="dropdown">
+            <button onclick="toggleDropdown(3)" class="dropbtn">Change</button>
+            <div id="CHANGE" class="dropdown-content">
+                <a href="#">Word</a>
+                <a href="#">Category</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    function toggleDropdown(num) {
+        if (num === 1) {
+            document.getElementById("ADD").classList.toggle("show");
+        } else if (num === 2) {
+            document.getElementById("DELETE").classList.toggle("show");
+        } else if (num === 3) {
+            document.getElementById("CHANGE").classList.toggle("show");
+        }
+    }
+
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropbtn')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+    </script>
+
+</body>
+</html>

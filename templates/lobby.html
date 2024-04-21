@@ -1,0 +1,18 @@
+<html>
+<head>
+    <title>Lobbies</title>
+</head>
+<body>
+    <h1>Lobbies</h1>
+    <ul>
+        {% for lobby_name in lobbies %}
+        <li><a href="{{ url_for('lobby', lobby_name=lobby_name) }}">{{ lobby_name }}</a> ({{ lobbies[lobby_name]|length }} participants)</li>
+        {% endfor %}
+    </ul>
+    <h2>Create a New Lobby</h2>
+    <form action="{{ url_for('create_lobby') }}" method="post">
+        <input type="text" name="lobby_name" placeholder="Enter lobby name" required>
+        <button type="submit">Create Lobby</button>
+    </form>
+</body>
+</html>

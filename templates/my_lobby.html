@@ -1,0 +1,19 @@
+<html>
+<head>
+    <title>{{ lobby_name }}</title>
+</head>
+<body>
+    <h1>Lobby: {{ lobby_name }}</h1>
+    <ul>
+        {% for participant in participants %}
+        <li>{{ participant }}</li>
+        {% endfor %}
+    </ul>
+    <h2>Join Lobby</h2>
+    <form action="{{ url_for('join_lobby', lobby_name=lobby_name) }}" method="post">
+        <input type="text" name="player_name" placeholder="Enter your name" required>
+        <button type="submit">Join</button>
+    </form>
+    <a href="{{ url_for('index') }}">Back to Lobbies</a>
+</body>
+</html>

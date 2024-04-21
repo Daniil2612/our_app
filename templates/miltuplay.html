@@ -1,0 +1,34 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>It's your dungeon'</title>
+</head>
+<body>
+    <h1>It's your dungeon'</h1>
+    <div id="question"></div>
+    <div id="options"></div>
+    <input type="text" id="answer">
+    <button onclick="submitAnswer()">Submit Answer</button>
+
+    <script src="https://cdn.socket.io/4.3.2/socket.io.min.js"></script>
+    <script>
+        const socket = io();
+
+        socket.on('question', function(data) {
+            document.getElementById('question').innerText = data.question;
+            document.getElementById('options').innerText = data.options.join('\n');
+        });
+
+        socket.on('result', function(data) {
+            alert(data.result);
+        });
+
+        function submitAnswer() {
+            let answer = document.getElementById('answer').value;
+            socket.emit('answer', {question_id: 1, answer: answer});
+        }
+    </script>
+</body>
+</html>

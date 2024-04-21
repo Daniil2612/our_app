@@ -1,0 +1,16 @@
+<script>
+
+function handleButtonClick3() {
+    var textInput = document.getElementById("catNameInput3");
+    var catName = textInput.value;
+    if(catName == ""){
+        alert("Enter your answer, please");
+    }else{
+        var ul  =  document.getElementById("AnswerList");
+        var li = document.createElement("li");
+        li.innerHTML = catName;
+        ul.appendChild(li);
+        alert("Your answers! " + catName);
+    }
+}
+</script>

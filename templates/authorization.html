@@ -1,0 +1,14 @@
+<form method="POST">
+    <div class="container">
+        <label for="Login"><b>Login</b></label>
+
+        <input type="text" placeholder="" name="Login" required>
+        <label for="Password"><b>Password</b></label>
+        <input type="password" placeholder="" name="Password" required>
+        <button type="submit">Ok</button>
+        <div class="container">
+            <span class="reg"> <a href="/registration">Registration</a></span>
+        </div>
+</form>
+
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/auth.css') }}">

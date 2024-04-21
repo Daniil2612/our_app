@@ -1,0 +1,57 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questions</title>
+</head>
+<body>
+    <h1>Questions</h1>
+    <div id="question"></div>
+    <div id="options"></div>
+    <input type="text" id="answer">
+    <button onclick="checkAnswer()">Submit Answer</button>
+
+    <script>
+        let questionId = 1;
+
+        function getQuestion() {
+            fetch('/get_question', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ question_id: questionId })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('question').innerText = data.question;
+                    document.getElementById('options').innerText = data.options.join('\n');
+                });
+        }
+
+        function checkAnswer() {
+            let answer = document.getElementById('answer').value;
+            fetch('/check_answer', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ question_id: questionId, answer: answer })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.result) {
+                        alert('Correct answer!');
+                    } else {
+                        alert('Incorrect answer!');
+                    }
+                    questionId++;
+                    getQuestion();
+                });
+        }
+
+        getQuestion();
+    </script>
+</body>
+</html>
